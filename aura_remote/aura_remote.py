@@ -1,8 +1,5 @@
 """
-IR codes from aura led mood light remote
-stored as a 2D list
-these codes were collected by running IR_reader.py
-and watching the output on the REPL console
+Control the onbard dotstar led using the aura led mood light remote
 """
 
 import time
