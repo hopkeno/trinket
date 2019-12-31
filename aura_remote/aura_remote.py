@@ -3,11 +3,9 @@ Control the onbard dotstar led using the aura led mood light remote
 """
 
 import time
-
 import adafruit_irremote
 import board
 import pulseio
-import simpleio
 import adafruit_dotstar as dotstar
 
 speaker_pin = board.D0  # speaker connected to digital pin
@@ -65,24 +63,6 @@ def fuzzy_pulse_compare(received):
 
                 if abs(press - received[i]) < threshold:
                     match_count[b_index] += 1
-
-
-def play_tone():
-    """ half second tones based on button selection [0-3] """
-    if remote_control_press == 0:
-        simpleio.tone(speaker_pin, 400, .5)  # 400Hz beep, 1/2 sec
-
-    elif remote_control_press == 1:
-        simpleio.tone(speaker_pin, 500, .5)  # 500Hz beep, 1/2 sec
-
-    elif remote_control_press == 2:
-        simpleio.tone(speaker_pin, 600, .5)  # 600Hz beep, 1/2 sec
-
-    elif remote_control_press == 3:
-        simpleio.tone(speaker_pin, 700, .5)  # 700Hz beep, 1/2 sec
-
-    elif remote_control_press == 4:
-        simpleio.tone(speaker_pin, 800, .5)  # 800Hz beep, 1/2 sec
 
 # Helper to give us a nice color swirl
 def wheel(pos):
