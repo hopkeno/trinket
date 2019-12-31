@@ -39,6 +39,7 @@ button_name = [
 "brightness down",
 "smooth"
 ]
+ir_length = 67   # Length of IR signal sequence. Should be 67 timings for this aura remote
 
 RED = (255,0,0)
 GREEN = (0,255,0)
@@ -87,8 +88,8 @@ decoder = adafruit_irremote.GenericDecode()
 # Loop waiting to receive pulses.
 i = 0
 while True:
-    # total count of IR code matches for each button {0, 1, 2, 3}
-    match_count = [0] * len(button_presses)
+    # total count of IR code matches for each button {0, 1, 2, 3..23}
+    match_count = [0] * len(buttons)
 
     # make sure pulses is empty
     pulses.clear()
