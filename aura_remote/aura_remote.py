@@ -8,7 +8,6 @@ import board
 import pulseio
 import adafruit_dotstar as dotstar
 
-speaker_pin = board.D0  # speaker connected to digital pin
 ir_pin = board.D3  # pin connected to IR receiver.
 dot_state = "boot"
 dot = dotstar.DotStar(board.APA102_SCK, board.APA102_MOSI, 1, brightness=0.2)
@@ -106,7 +105,6 @@ while True:
     # otherwise we don't know this button pressed
     if max(match_count) == len(button_presses[0]):
         remote_control_press = match_count.index(max(match_count))
-        play_tone()
         print(button_name[match_count.index(max(match_count))])
         action = button_name[match_count.index(max(match_count))]
         if dot_state == "off" or dot_state == "boot":
