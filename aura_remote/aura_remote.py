@@ -7,7 +7,7 @@ import adafruit_irremote
 import board
 import pulseio
 import adafruit_dotstar as dotstar
-import auraremote_buttonmap as aura
+import auraremote_buttonmap2 as aura
 
 ir_pin = board.D3  # pin connected to IR receiver.
 dot = dotstar.DotStar(board.APA102_SCK, board.APA102_MOSI, 1, brightness=0.2)
