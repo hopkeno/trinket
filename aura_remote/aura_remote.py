@@ -10,9 +10,7 @@ import adafruit_dotstar as dotstar
 import auraremote_buttonmap2 as aura
 
 ir_pin = board.D3  # pin connected to IR receiver.
-dot = dotstar.DotStar(board.APA102_SCK, board.APA102_MOSI, 1, brightness=0.2)
-dot.brightness = 0.0
-dot_state = False
+dot = dotstar.DotStar(board.APA102_SCK, board.APA102_MOSI, 1, brightness=False)
 
 fuzzyness = 0.2  # IR remote timing must be within 20% tolerance
 ir_length = 67   # Length of IR signal sequence. Should be 67 timings for this aura remote
@@ -62,11 +60,10 @@ while True:
     # 100% match (+/- fuzziness)
     # otherwise we don't know this button pressed
     if action in aura.buttons:
-        if not dot_state:
+        if not dot.brightness:
             if action == "on":
                 dot.brightness = 0.2
                 dot[0] = aura.colors["white"]
-                dot_state = True
                 print("power on with color=white and brightness=%.1f" % dot.brightness)
         else:
             if action == "brightness up":
@@ -79,8 +76,7 @@ while True:
                     print("brightness decreased to %.1f" % dot.brightness)
             elif action == "on":
                 #if already on, turn off instead
-                dot.brightness = 0.0
-                dot_state = False
+                dot.brightness = False
                 print("power off")
             elif action == "flash" or action == "strobe" or action == "fade" or action == "smooth":
                 print("%s not implemented" % action)
